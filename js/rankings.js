@@ -19,7 +19,7 @@ function parseData(userRankings) {
         
     }
 
-    var returnString = (tarCharacter + " is in the " + (pctSum / userRankings.length).toFixed() + "th percentile of players for " + tarMetric + ".");
+    var returnString = (tarCharacter + " has an average percentile rank of " + (pctSum / userRankings.length).toFixed() + " for " + tarMetric + ".");
 
     document.getElementById("avgRanking").innerHTML = returnString;
     
