@@ -30,8 +30,10 @@
                 <input type="text" class="form-control" id="logMetric">
             </div>
             <div class="form-group">
-                <label for="userKey">WarcraftLogs.com Public Key</label>
-                <input class="form-control" id="userKey">
+                <label for="userKey">WarcraftLogs.com Public Key. 
+                    <a href="https://www.warcraftlogs.com/accounts/changeuser/">Available here if access to private logs are necessary. Otherwise leave this field unchanged.</a>
+                </label>
+                <input class="form-control" id="userKey" value="a9497cb93aa99dc7fd7d83e6d5dc91cd">
             </div>
             <a class="btn btn-primary" href="#" onClick="buildRankings()" role="button">Fetch Rankings</a>
         </form>
@@ -39,7 +41,7 @@
 
     <div class="container">
     </br>
-        <p id="demo"></p> 
+        <p id="avgRanking"></p> 
     </div>
     
     

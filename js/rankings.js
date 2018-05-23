@@ -21,7 +21,7 @@ function parseData(userRankings) {
 
     var returnString = (tarCharacter + " is in the " + (pctSum / userRankings.length).toFixed() + "th percentile of players for " + tarMetric + ".");
 
-    document.getElementById("demo").innerHTML = returnString;
+    document.getElementById("avgRanking").innerHTML = returnString;
     
 }
 
