@@ -1,44 +1,48 @@
 /* Written by Sean Mayton
 Interacts with the WarcraftLogs API to fetch and
-analyze rankings of user characters */
-
-var tarServer, tarRegion, tarCharacter, logsKey, tarMetric, pctSum, pctRank;
+analyze rankings of user characters.                */
 
 function parseData(userRankings) {
-    console.log("Found " + userRankings.length + " reports for "+ tarCharacter + ".");
-    
-    for(var i = 0; i < userRankings.length; i++) {
+  // console.log(`Found ${userRankings.length} reports for ${tarCharacter}.`);
 
-        var userRanking = userRankings[i];
-        var date = new Date((userRanking.startTime));
-        pctRank = (userRanking.rank / userRanking.outOf) * 100;
-        pctSum += pctRank;
-        
-        console.log(date);
-        console.log("Ranking: " + userRanking.rank + " out of " + userRanking.outOf + ". Percentile ranking: " + pctRank.toFixed());
-        
-    }
+  let pctRank = 0;
+  let pctSum = 0;
 
-    var returnString = (tarCharacter + " has an average percentile rank of " + (pctSum / userRankings.length).toFixed() + " for " + tarMetric + ".");
+  for (let i = 0; i < userRankings.length; i += 1) {
+    const userRanking = userRankings[i];
+    const date = new Date((userRanking.startTime));
+    pctRank = (userRanking.rank / userRanking.outOf) * 100.0;
+    pctSum += pctRank;
 
-    document.getElementById("avgRanking").innerHTML = returnString;
-    
+    console.log(date);
+    console.log(`Ranking: ${userRanking.rank} out of ${userRanking.outOf}. Percentile ranking: ${pctRank.toFixed()}`);
+  }
+  console.log(pctSum);
+  const returnString = (`${jQuery('#userCharacter').val()} Is In the Top ${(pctSum / userRankings.length).toFixed()}% of Players for ${jQuery('#logMetric').val().toUpperCase()}.`);
+  document.getElementById('avgRanking').innerHTML = returnString;
 }
-
-
 
 function buildRankings() {
-    tarServer = jQuery("#userServer").val();
-    tarRegion = jQuery("#userRegion").val();
-    tarCharacter = jQuery("#userCharacter").val();
-    tarMetric = jQuery("#logMetric").val();
-    logsKey = jQuery("#userKey").val();
+  const tarServer = jQuery('#userServer').val();
+  const tarRegion = jQuery('#userRegion').val();
+  const tarCharacter = jQuery('#userCharacter').val();
+  const tarMetric = jQuery('#logMetric').val();
+  const logsKey = jQuery('#userKey').val();
 
-    var apiURL = "https://www.warcraftlogs.com:443/v1/rankings/character/" + tarCharacter + "/" + tarServer + "/" + tarRegion + "?metric=" + tarMetric + "&api_key=" + logsKey;
-    pctSum = 0;
-    pctRank = 0;
-
-    jQuery.ajax({
-        url: apiURL, type: "GET", success: parseData
-    }); 
+  const apiURL = `https://www.warcraftlogs.com:443/v1/rankings/character/${tarCharacter}/${tarServer}/${tarRegion}?metric=${tarMetric}&api_key=${logsKey}`;
+  console.log(apiURL);
+  jQuery.ajax({
+    url: apiURL, method: 'POST', success: parseData,
+  });
 }
+
+function toggleKeyField() {
+  const keyField = document.getElementById('userKey');
+
+  if (keyField.style.display === 'none') {
+    keyField.style.display = 'block';
+  } else {
+    keyField.style.display = 'none';
+  }
+}
+
