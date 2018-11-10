@@ -29,7 +29,7 @@ function buildRankings() {
   const tarMetric = jQuery('#logMetric').val();
   const logsKey = jQuery('#userKey').val();
 
-  const apiURL = `https://warcraftlogs.com:443/v1/rankings/character/${tarCharacter}/${tarServer}/${tarRegion}?metric=${tarMetric}&api_key=${logsKey}`;
+  const apiURL = `https://www.warcraftlogs.com:443/v1/rankings/character/${tarCharacter}/${tarServer}/${tarRegion}?metric=${tarMetric}&api_key=${logsKey}`;
   console.log(apiURL);
   jQuery.ajax({
     url: apiURL, method: 'POST', success: parseData,
