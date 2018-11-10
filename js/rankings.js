@@ -32,7 +32,7 @@ function buildRankings() {
   const apiURL = `https://www.warcraftlogs.com:443/v1/rankings/character/${tarCharacter}/${tarServer}/${tarRegion}?metric=${tarMetric}&api_key=${logsKey}`;
   console.log(apiURL);
   jQuery.ajax({
-    url: apiURL, method: 'POST', success: parseData,
+    url: apiURL, method: 'GET', success: parseData,
   });
 }
 
