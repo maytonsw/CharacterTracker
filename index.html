@@ -44,13 +44,13 @@
         </div>
         <div class="form-group">
             <label class="radio-inline">
-                <input type="radio" id="logMetric" name="optMetric" value="dps">DPS</label>
+                <input type="radio" id="logMetric" name="optMetric" value="dps" checked="">DPS</label>
             <label class="radio-inline">
                 <input type="radio" id="logMetric" name="optMetric" value="hps">HPS</label>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="keyForm">
             <label for="userKey">WarcraftLogs.com Public Key 
-                <a href="https://www.warcraftlogs.com/accounts/changeuser/">Click here if access to private logs are necessary.</a>
+                <a href="https://www.warcraftlogs.com/profile">Click here if access to private logs are necessary.</a>
             </label>
             <input class="form-control" id="userKey" value="879f290422d74824299a945f46eefca3">   
         </div>
@@ -60,7 +60,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center">
-            <a class="btn btn-info" href="#" role="button" onClick="toggleKeyField()">Show Key (Optional)</a>   
+            <a class="btn btn-info" href="#" role="button" onClick="toggleKeyField()" id="keyButton">Show Key (Optional)</a>
             <a class="btn btn-primary btn-md" href="#" role="button" onClick="buildRankings()">Fetch Rankings</a>
         </div>
     </div>

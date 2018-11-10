@@ -36,4 +36,9 @@ select {
     text-align-last: center;
 }
 
+#keyButton, #keyForm
+{
+    display: none;
+}
+
 
